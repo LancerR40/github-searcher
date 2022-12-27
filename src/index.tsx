@@ -6,8 +6,8 @@ import '@fontsource/roboto/700.css';
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import CssBaseline from '@mui/material/CssBaseline';
 import App from './App'
+import { AppThemeProvider } from './contexts/theme'
 
 const rootElement = document.getElementById('root')
 
@@ -17,8 +17,7 @@ if (!rootElement) {
 
 const root = createRoot(rootElement)
 root.render(
-  <>
-    <CssBaseline />
+  <AppThemeProvider>
     <App />
-  </>
+  </AppThemeProvider>
 )
