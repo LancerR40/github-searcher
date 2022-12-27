@@ -20,7 +20,7 @@ const lightTheme = {
     default: '#fff',
   },
   form: {
-    background: '#f5f5f5',
+    background: '#080c25',
     color: '#fff',
   },
 }
@@ -53,7 +53,7 @@ export const AppThemeProvider = ({ children }: { children: JSX.Element }) => {
 
   /* theme palette */
   const theme = useMemo(() => createTheme(themeProps(themeMode)), [themeMode])
-
+  
   const handleThemeMode = () => {
     const mode = themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
     setThemeMode(mode)
