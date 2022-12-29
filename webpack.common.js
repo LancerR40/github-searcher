@@ -1,4 +1,6 @@
+const webpack = require('webpack')
 const path = require('path')
+const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -10,6 +12,12 @@ module.exports = (env) => {
 
   /* get env file path by env mode */
   const envFilePath = environment === 'development' ? `./.env.${environment}` : './.env'
+
+  /* check if envFilePath is exist */
+  const isEnvFileExist = fs.existsSync(envFilePath)
+
+  /* if do not exist any .env|.env.* file, add the default webpack process env object */
+  const dotenv = isEnvFileExist ? [new Dotenv({ path: envFilePath })] : [new webpack.DefinePlugin({ process: {env: {}} })]
 
   return {
     entry: path.resolve(__dirname, './src/index.tsx'),
@@ -54,9 +62,7 @@ module.exports = (env) => {
       }),
       new MiniCssExtractPlugin(),
       new CleanWebpackPlugin(),
-      new Dotenv({
-        path: envFilePath,
-      }),
+      ...(dotenv),
     ],
   }
 }
