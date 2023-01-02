@@ -6,6 +6,7 @@ import Header from './components/Header'
 
 /* Pages components */
 import LoginPage from './pages/Login'
+import HomePage from './pages/Home'
 
 const App = () => {
   const { height } = useScreen()
@@ -13,7 +14,8 @@ const App = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', height }}>
       <Header />
       <Box sx={{ flex: 1 }}>
-        <LoginPage />
+        {/* <LoginPage /> */}
+        <HomePage />
       </Box>
     </Box>
   )
