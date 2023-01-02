@@ -7,17 +7,23 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 module.exports = (env) => {
+  /* available environments list */
+  const environments = [{ name: 'production', path: './.env' }, { name: 'development', path: './env.development' }]
+
   /* env mode (production | development) */
   const environment = env.environment
 
-  /* get env file path by env mode */
-  const envFilePath = environment === 'development' ? `./.env.${environment}` : './.env'
+  /* env file path by environment */
+  let envPath = environment === environments[0].name ? environments[0].path : environments[1].path
 
-  /* check if envFilePath is exist */
-  const isEnvFileExist = fs.existsSync(envFilePath)
+  /* check file is exist */
+  const isExist = fs.existsSync(envPath)
 
-  /* if do not exist any .env|.env.* file, add the default webpack process env object */
-  const dotenv = isEnvFileExist ? [new Dotenv({ path: envFilePath })] : [new webpack.DefinePlugin({ process: {env: {}} })]
+  if (!isExist) {
+    envPath = fs.existsSync(environments[0].path) ? environments[0].path : ''
+  }
+
+  const dotenvPlugin = path ? new Dotenv({ path: envPath, }) : new webpack.DefinePlugin({ process: { env: {} }, })
 
   return {
     entry: path.resolve(__dirname, './src/index.tsx'),
@@ -62,7 +68,7 @@ module.exports = (env) => {
       }),
       new MiniCssExtractPlugin(),
       new CleanWebpackPlugin(),
-      ...(dotenv),
+      dotenvPlugin,
     ],
   }
 }
