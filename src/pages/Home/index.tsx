@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Container from '@mui/material/Container'
 import Searcher from '../../components/Searcher'
+import UserCard from '../../components/UserCard'
+import Container from '@mui/material/Container'
+import CircularProgress from '@mui/material/CircularProgress'
 import styles from './styles'
 import useTheme from '@mui/material/styles/useTheme'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import API from '../../api'
+import { GitHubUser } from '../../types'
 
 const HomePage = () => {
   const theme = useTheme()
@@ -13,19 +16,24 @@ const HomePage = () => {
 
   const [text, setText] = useState<string>('')
   const [username, setUsername] = useState<string>('Octocat')
+  const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     getGitHubUser()
   }, [username])
   
   const getGitHubUser = async () => {
+    setIsLoading(true)
     const response = await API.getGitHubUsersByUsername(username)
+    setIsLoading(false)
 
     if (response.result === 'error') {
-      return alert(response.error)
+      return alert(response.message)
     }
 
     console.log(response.data)
+    setUser(response.data)
   }
 
   const onClick = () => {
@@ -45,6 +53,11 @@ const HomePage = () => {
         onChange={onChange} 
         onClick={onClick}
       />
+
+      {isLoading === true 
+        ? <CircularProgress sx={{ mt: 4 }} /> 
+        : <UserCard user={user as GitHubUser} />
+      }
     </Container>
   )
 }

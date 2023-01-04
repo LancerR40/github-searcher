@@ -1,14 +1,14 @@
 import axios, { AxiosError } from 'axios'
-import { UserResponseAPI, ResponseAPI } from './api.types'
+import { APIResponse, GitHubUser, } from '../types'
 
-const successResponse = (data: UserResponseAPI): ResponseAPI<UserResponseAPI, string> => ({
+const successResponse = <ResponseData, Error>(data: ResponseData): APIResponse<ResponseData, Error> => ({
   result: 'success',
   data,
 })
 
-const errorResponse = (error: string): ResponseAPI<UserResponseAPI, string> => ({
+const errorResponse = <ResponseData, Error>(message: Error): APIResponse<ResponseData, Error> => ({
   result: 'error',
-  error,
+  message,
 })
 
 const URLs = {
@@ -19,7 +19,7 @@ const getGitHubAccessToken = async (code: string) => {
   // I will write this code later when I have builded the API ...
 }
 
-const getGitHubUsersByUsername = async (username: string): Promise<ResponseAPI<UserResponseAPI, string>> => {
+const getGitHubUsersByUsername = async (username: string): Promise<APIResponse<GitHubUser, string>> => {
   try {
     const request = await axios.get(`${URLs.github_users}/${username}`)
     return successResponse(request.data)

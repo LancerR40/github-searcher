@@ -1,11 +1,11 @@
-export type UserResponseAPI = {
+export type GitHubUser = {
   login: string,
   id: number,
   node_id: string,
-  avatar_url: URL,
+  avatar_url: string,
   gravatar_id: string,
-  url: URL,
-  html_url: URL,
+  url: string,
+  html_url: string,
   followers_url: URL,
   following_url: URL,
   gists_url: URL,
@@ -19,7 +19,7 @@ export type UserResponseAPI = {
   site_admin: boolean,
   name: string,
   company: string,
-  blog: URL,
+  blog: string,
   location: string,
   email: null | string,
   hireable: null | string,
@@ -29,8 +29,8 @@ export type UserResponseAPI = {
   public_gists: number,
   followers: number,
   following: number,
-  created_at: Date,
+  created_at: string,
   updated_at: Date,
 }
 
-export type ResponseAPI<R, E> = { result: 'success', data: R } | { result: 'error', error: E }
+export type APIResponse<OK, Error> = { result: 'success', data: OK } | { result: 'error', message: Error }
