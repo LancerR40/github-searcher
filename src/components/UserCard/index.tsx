@@ -58,7 +58,7 @@ const UserCard = ({ user }: UserCardProps) => {
             <Typography component="h2" variant='h4'>{userName}</Typography>
             <Typography>{new Date(created_at).toLocaleString()}</Typography>
           </Stack>
-          <Button sx={{ textTransform: 'none', width: 'fit-content', p: 0 }} size="small" href={html_url}>
+          <Button sx={{ textTransform: 'none', width: 'fit-content', p: 0 }} size="small" href={html_url} target="_blank" rel="noopener">
             <Typography>@{login}</Typography>
           </Button>
           <Typography component="p">
@@ -80,7 +80,7 @@ const UserCard = ({ user }: UserCardProps) => {
               ))}
             </Stack>
           </CustomPaper>
-          <Grid container spacing={3}>
+          <Grid container rowSpacing={3}>
             <Grid item xs={6}>
               <Stack direction='row' spacing={1}>
                 <LocationOnIcon />
