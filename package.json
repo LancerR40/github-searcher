@@ -1,12 +1,15 @@
 {
+  "private": "true",
   "name": "basic-material-ui",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "author": "Ronald Abu Saleh <ronald.abusaleh@gmail.com>",
+  "homepage": "https://github.com/LancerR40/github-searcher.git",
   "scripts": {
     "start": "webpack serve --open --env environment=development --config webpack.dev.js",
-    "build": "webpack --env environment=production --config webpack.prod.js"
+    "build": "webpack --env environment=production --config webpack.prod.js",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "11.10.5",
@@ -26,6 +29,7 @@
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "6.7.2",
     "dotenv-webpack": "8.0.1",
+    "gh-pages": "4.0.0",
     "html-webpack-plugin": "5.5.0",
     "mini-css-extract-plugin": "2.7.2",
     "style-loader": "3.3.1",
