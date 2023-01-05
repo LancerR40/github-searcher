@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import styles from './styles'
 import IconButton from '@mui/material/IconButton'
-import Avatar from '@mui/material/Avatar'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -18,11 +17,11 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 const Header = () => {
   const theme = useTheme()
   const themeContext = useContext(AppThemeContext)
-  const noAuthPages = ['Login']
+  const noAuthPages = ['Home']
 
   return (
     <AppBar position="static" color='transparent' elevation={1}>
-      <Container maxWidth="lg" disableGutters>
+      <Container sx={{ px: { xs: 4, lg: 0 } }} maxWidth="lg" disableGutters>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1 }}>
             <GitHubIcon sx={styles.icon} fontSize='large' />
