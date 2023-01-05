@@ -1,6 +1,7 @@
-import React, { createContext, useState, useMemo } from 'react'
+import React, { createContext, useState, useEffect, useMemo } from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { PaletteMode } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 
 enum ThemeMode {
@@ -19,10 +20,6 @@ const lightTheme = {
   background: {
     default: '#fff',
   },
-  form: {
-    background: '#080c25',
-    color: '#fff',
-  },
 }
 
 const darkTheme = {
@@ -31,10 +28,6 @@ const darkTheme = {
   },
   background: {
     default: '#080c25',
-  },
-  form: {
-    background: '#fff',
-    color: '#000',
   },
 }
 
@@ -53,10 +46,32 @@ export const AppThemeProvider = ({ children }: { children: JSX.Element }) => {
 
   /* theme palette */
   const theme = useMemo(() => createTheme(themeProps(themeMode)), [themeMode])
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+
+  useEffect(() => {
+    handleInitialThemeMode()
+  }, [])
+
+  const handleInitialThemeMode = () => {
+    const mode = window.localStorage.getItem('themeMode') as ThemeMode
+
+    if (!mode) {
+      const mode = prefersDarkMode ? ThemeMode.DARK : ThemeMode.LIGHT
+      return updateThemeMode(mode)
+    }
+
+    updateThemeMode(mode)
+  }
   
   const handleThemeMode = () => {
     const mode = themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
-    setThemeMode(mode)
+    updateThemeMode(mode)
+  }
+
+  const updateThemeMode = (themeMode: ThemeMode) => {
+    window.localStorage.setItem('themeMode', themeMode)
+    setThemeMode(themeMode)
   }
 
   const value = {
