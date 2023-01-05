@@ -48,14 +48,16 @@ const UserCard = ({ user }: UserCardProps) => {
   ]
 
   return (
-    <Grid container spacing={3} sx={{ mt: 2 }}>
+    <Grid container spacing={3} sx={{ my: 2, }}>
       <Grid item xs={12} md={3}>
         <CardMedia sx={{ maxWidth: 400, borderRadius: '50%' }} component='img' alt={name} image={avatar_url} />
       </Grid>
       <Grid item xs={12} md={9}>
         <Stack spacing={1}>
-          <Typography component="h2" variant='h4'>{userName}</Typography>
-          <Typography>{created_at}</Typography>
+          <Stack display={{ xs: 'block', md: 'flex' }} direction="row" justifyContent="space-between" alignItems="center">
+            <Typography component="h2" variant='h4'>{userName}</Typography>
+            <Typography>{new Date(created_at).toLocaleString()}</Typography>
+          </Stack>
           <Button sx={{ textTransform: 'none', width: 'fit-content', p: 0 }} size="small" href={html_url}>
             <Typography>@{login}</Typography>
           </Button>
@@ -94,8 +96,9 @@ const UserCard = ({ user }: UserCardProps) => {
                       target="_blank" 
                       rel="noopener" 
                       color="inherit" 
-                      underline="none">
-                        @{userTwitter}
+                      underline="none"
+                    >
+                      @{userTwitter}
                     </Link>
                   : <Typography>{userTwitter}</Typography>
                 }
@@ -110,8 +113,10 @@ const UserCard = ({ user }: UserCardProps) => {
                       target="_blank" 
                       rel="noopener" 
                       color="inherit" 
-                      underline="none">
-                        {userBlog}
+                      underline="none"
+                      noWrap={true}
+                    >
+                      {userBlog}
                     </Link>
                   : <Typography>{userBlog}</Typography>
                 }

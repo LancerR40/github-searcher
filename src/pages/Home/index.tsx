@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo, useMemo } from 'react'
 import Searcher from '../../components/Searcher'
 import UserCard from '../../components/UserCard'
 import Container from '@mui/material/Container'
@@ -6,8 +6,13 @@ import CircularProgress from '@mui/material/CircularProgress'
 import styles from './styles'
 import useTheme from '@mui/material/styles/useTheme'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import styled from '@mui/material/styles/styled'
 import API from '../../api'
 import { GitHubUser } from '../../types'
+
+const CustomContainer = styled(Container)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'light' ? '#f2f2f2' : '#161e35'
+}))
 
 const HomePage = () => {
   const theme = useTheme()
@@ -32,7 +37,6 @@ const HomePage = () => {
       return alert(response.message)
     }
 
-    console.log(response.data)
     setUser(response.data)
   }
 
@@ -45,11 +49,11 @@ const HomePage = () => {
   }
 
   return (
-    <Container sx={styles.container} maxWidth={containerMaxWidth}>
+    <CustomContainer sx={styles.container} maxWidth={containerMaxWidth} disableGutters>
       <Searcher 
-        sx={{ width: '100%', maxWidth: 800 }} 
+        sx={{ width: '100%', maxWidth: 800, mx: 'auto' }} 
         placeholder="Search by username..."
-        value={text} 
+        value={text}
         onChange={onChange} 
         onClick={onClick}
       />
@@ -58,7 +62,7 @@ const HomePage = () => {
         ? <CircularProgress sx={{ mt: 4 }} /> 
         : <UserCard user={user as GitHubUser} />
       }
-    </Container>
+    </CustomContainer>
   )
 }
 
