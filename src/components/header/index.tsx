@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <AppBar position="static" color='transparent' elevation={1}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" disableGutters>
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1 }}>
             <GitHubIcon sx={styles.icon} fontSize='large' />
