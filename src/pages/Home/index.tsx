@@ -39,6 +39,15 @@ const HomePage = () => {
   useEffect(() => {
     getGitHubUser()
   }, [username])
+
+  useEffect(() => {
+    window.addEventListener('keypress', handleEnterKey)
+
+    /* clean up when component is unmounted */
+    return () => {
+      window.removeEventListener('keypress', handleEnterKey)
+    }
+  }, [text])
   
   const getGitHubUser = async () => {
     setNotFound(notFoundInitialState)
@@ -54,11 +63,17 @@ const HomePage = () => {
   }
 
   const onClick = () => {
-    setUsername(text)
+    setUsername(text.trim())
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
+  }
+
+  const handleEnterKey = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onClick()
+    }
   }
 
   const renderUser = notFound.isNotFound 
