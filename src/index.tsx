@@ -16,8 +16,14 @@ if (!rootElement) {
 }
 
 const root = createRoot(rootElement)
+
+
 root.render(
   <AppThemeProvider>
     <App />
   </AppThemeProvider>
 )
+
+if (module.hot) {
+  module.hot.accept('./App.tsx')
+}
