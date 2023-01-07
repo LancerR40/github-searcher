@@ -1,5 +1,9 @@
 # github-searcher
-GitHub Searcher App to search GitHub users with their API with their details build with React using TypeScript & Material UI
+App to search GitHub users with their details using GitHub API build with React using TypeScript & Material UI
+* [React](https://es.reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Material UI](https://mui.com/)
+* [Webpack](https://webpack.js.org/)
 
 ## Table of Contents
 * [Themes (Dark and Light Mode)](#themes)
