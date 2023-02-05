@@ -12,7 +12,7 @@ App to search GitHub users with their details using GitHub API build with React 
 
 ## Themes
 
-![img-1](https://user-images.githubusercontent.com/77751686/210902280-a9ad72e0-301a-4fe9-95e1-6253f5462c25.png)
+![img-1](https://user-images.githubusercontent.com/77751686/216842395-e43956ae-3e8f-47ee-bdea-c16e4aee7777.png)
 
 ![img](https://user-images.githubusercontent.com/77751686/211316183-5c1ecc48-7dea-4c14-8483-3c407b8e9aa9.png)
 
