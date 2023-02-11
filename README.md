@@ -19,7 +19,7 @@ App to search GitHub users with their details using GitHub API build with React 
 ## Setup
 
 ### Requirements
-You must have installed [Node.js](https://nodejs.org/en/) and [Yarn package manager](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) on your machine
+You must have installed [node.js](https://nodejs.org/en/) and [yarn package manager](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) on your machine
 
 ### Clone
 ```$
